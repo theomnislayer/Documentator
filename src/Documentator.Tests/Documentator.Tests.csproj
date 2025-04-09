@@ -1,5 +1,4 @@
 ﻿<Project Sdk="MSTest.Sdk/3.6.4">
-
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
@@ -11,21 +10,34 @@
       -->
 		<TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
 	</PropertyGroup>
-
+	
 	<Target Name="CreateEnv" BeforeTargets="PreBuildEvent" Condition="!Exists('$(ProjectDir)\.env')">
 		<Message Text="Creating $(ProjectDir).env" Importance="high" />
 		<Exec Command="echo # override your configuration variables&gt; .env" />
 		<Exec Command="echo OpenApiKey=&gt;&gt; .env" />
 		<Exec Command="echo OpenApiEndpoint=&gt;&gt; .env" />
 	</Target>
-
+	
 	<ItemGroup>
-	  <ProjectReference Include="..\Documentator.Core\Documentator.Core.csproj" />
+		<ProjectReference Include="..\Documentator.Core\Documentator.Core.csproj" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
 		<None Update=".env">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Update="Microsoft.NET.Test.Sdk" />
+		<PackageReference Update="Microsoft.Testing.Extensions.CodeCoverage" />
+		<PackageReference Update="Microsoft.Testing.Extensions.TrxReport" />
+		<PackageReference Update="MSTest.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Update="MSTest.TestAdapter" />
+		<PackageReference Update="MSTest.TestFramework" />
+	</ItemGroup>
+
 </Project>
