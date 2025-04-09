@@ -12,9 +12,10 @@
 		<TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<None Update=".env;appsettings.json;appsettings.*.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
+	<Target Name="CreateEnv" BeforeTargets="PreBuildEvent" Condition="!Exists('$(ProjectDir)\.env')">
+		<Message Text="Creating $(ProjectDir).env" Importance="high" />
+		<Exec Command="echo # override your configuration variables&gt; .env" />
+		<Exec Command="echo OpenApiKey=&gt;&gt; .env" />
+		<Exec Command="echo OpenApiEndpoint=&gt;&gt; .env" />
+	</Target>
 </Project>
