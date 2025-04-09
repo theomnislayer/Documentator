@@ -18,4 +18,14 @@
 		<Exec Command="echo OpenApiKey=&gt;&gt; .env" />
 		<Exec Command="echo OpenApiEndpoint=&gt;&gt; .env" />
 	</Target>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Documentator.Core\Documentator.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update=".env">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>
