@@ -363,4 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #Mine
-.env
+*.env
+/src/Documentator.Tests/.env
