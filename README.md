@@ -6,3 +6,7 @@ Steps:
 4. Build
 5. In the .env file, enter your OpenAiApiKey and OpenAiEndpoint
 6. You can now run the project in your web browser.
+
+
+By: Glynn Llywyllyn Bacanto
+For IS215
