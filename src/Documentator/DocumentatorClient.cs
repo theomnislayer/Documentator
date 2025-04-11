@@ -10,7 +10,7 @@ namespace Documentator;
 public interface IDocumentatorClient
 {
     void Authenticate(CancellationToken token = default);
-    Task<object> Document(DocumentMyCodeDto request, CancellationToken token = default);
+    Task<JsonElement> Document(DocumentMyCodeDto request, CancellationToken token = default);
 }
 
 public class DocumentatorClient : IDocumentatorClient
@@ -27,7 +27,7 @@ public class DocumentatorClient : IDocumentatorClient
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Environment.GetEnvironmentVariable("OpenApiKey"));
     }
 
-    public async Task<object> Document(DocumentMyCodeDto request, CancellationToken token = default)
+    public async Task<JsonElement> Document(DocumentMyCodeDto request, CancellationToken token = default)
     {
         var uri = "/v1/chat/completions";
         var req = new HttpRequestMessage(HttpMethod.Post, uri)
@@ -40,6 +40,6 @@ public class DocumentatorClient : IDocumentatorClient
         };
         var res = await _httpClient.SendAsync(req);
         res.StatusCode.ShouldBe(HttpStatusCode.OK);
-        return await res.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<JsonElement>(await res.Content.ReadAsStringAsync());
     }
 }

@@ -1,0 +1,19 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Documentator</PageTitle>
+
+<h1>Documentator</h1>
+
+<p>Code Documentator!</p>
+<label for="inputText">Enter your code:</label> 
+<br />
+<textarea id="input" name="message" rows="4" cols="50" @bind="inputString"></textarea>
+<br />
+<button class="btn btn-primary" @onclick="CreateDocumentation">Create Documentation</button>
+
+<br />
+<br />
+<p>Input: @inputString</p>
+<br />
+<textarea id="output" name="message" rows="10" cols="50" @bind="outputString"></textarea>

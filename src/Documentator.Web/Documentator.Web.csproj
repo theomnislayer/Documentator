@@ -1,16 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
-	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
-		<Nullable>disable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\src\Documentator.Core\Documentator.Core.csproj" />
-		<ProjectReference Include="..\src\Documentator.Dto\Documentator.Dto.csproj" />
-		<ProjectReference Include="..\src\Documentator\Documentator.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Documentator\Documentator.csproj" />
+  </ItemGroup>
 
 	<Target Name="CreateEnv" BeforeTargets="PreBuildEvent" Condition="!Exists('$(ProjectDir)\.env')">
 		<Message Text="Creating $(ProjectDir).env" Importance="high" />

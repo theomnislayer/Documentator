@@ -1,21 +1,18 @@
 ﻿using Documentator.Dto;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Documentator.Web.Components.Pages;
 
-public partial class Home : ComponentBase
+public partial class DocumentatorHome : ComponentBase
 {
-    private readonly IDocumentatorClient _documentatorClient;
-
-    public Home(IDocumentatorClient documentatorClient)
+    IDocumentatorClient _documentatorClient;
+    public DocumentatorHome(IDocumentatorClient documentatorClient)
     {
         _documentatorClient = documentatorClient;
     }
 
-    [BindProperty]
-    public string UserInput { get; set; } = string.Empty;
-    public string OutputText { get; set; } = string.Empty;
+    private string inputString = "";
+    private string outputString = "Loading";
 
     private async Task CreateDocumentation()
     {
@@ -24,11 +21,11 @@ public partial class Home : ComponentBase
             new()
             {
                 Role = "user",
-                Content = "public int AddTwoNumbers(int a, int b) { return a+b; }"
+                Content = inputString
             });
 
         _documentatorClient.Authenticate();
         var result = await _documentatorClient.Document(request);
-        OutputText = result?.ToString();
+        outputString = result.GetProperty("choices")[0].GetProperty("message").GetProperty("content").ToString();
     }
 }
