@@ -19,7 +19,8 @@
 	</Target>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\Documentator.Core\Documentator.Core.csproj" />
+		<ProjectReference Include="..\Documentator.Dto\Documentator.Dto.csproj" />
+		<ProjectReference Include="..\Documentator\Documentator.csproj" />
 	</ItemGroup>
 	
 	<ItemGroup>

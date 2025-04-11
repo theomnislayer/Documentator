@@ -24,6 +24,7 @@ public class Startup
     {
         DotEnv.Load();
         return new ServiceCollection()
-            .AddClients();
+            .AddClients()
+            .AddDocumentatorClients();
     }
 }

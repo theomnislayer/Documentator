@@ -1,0 +1,10 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<label for="inputText">Enter your code:</label>
+<input type="text" id="inputText" asp-for="UserInput" />
+<br />
+<button class="btn btn-primary" @onclick="CreateDocumentation">Create Documentation</button>
+<br />
+<p> @UserInput </p>

@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\src\Documentator.Core\Documentator.Core.csproj" />
+		<ProjectReference Include="..\src\Documentator.Dto\Documentator.Dto.csproj" />
+		<ProjectReference Include="..\src\Documentator\Documentator.csproj" />
+	</ItemGroup>
+
+	<Target Name="CreateEnv" BeforeTargets="PreBuildEvent" Condition="!Exists('$(ProjectDir)\.env')">
+		<Message Text="Creating $(ProjectDir).env" Importance="high" />
+		<Exec Command="echo # override your configuration variables&gt; .env" />
+		<Exec Command="echo OpenApiKey=&gt;&gt; .env" />
+		<Exec Command="echo OpenApiEndpoint=&gt;&gt; .env" />
+	</Target>
+
+	<ItemGroup>
+		<None Update=".env">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
+</Project>
